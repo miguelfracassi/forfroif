@@ -1,0 +1,30 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comprovante de Confissão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<main>
+<div class="barra"><button class="btn" onclick="window.print()">Imprimir comprovante</button><a class="btn sec" href="confissao.html">Nova confissão</a></div>
+<article class="folha">
+<div class="cab"><img src="brasao.png" alt="Brasão da Paróquia São Pedro"><h1>PARÓQUIA SÃO PEDRO</h1><p>Diocese de Piracicaba</p></div>
+<h2>COMPROVANTE DE CONFISSÃO E INFORMAÇÕES</h2>
+<div class="dados">
+<p><b>Nome:</b> <span id="n"></span></p>
+<p><b>Data e Hora:</b> <span id="dh"></span></p>
+<p><b>Padre:</b> <span id="p"></span></p>
+<p class="criado"><b>Criado por:</b> <span id="c"></span></p>
+</div>
+<div class="fim">
+<div class="assin">Assinatura do secretário</div>
+<div class="carimbo">Carimbo de comparecimento</div>
+</div>
+</article></main>
+<script>
+let d=null;try{d=JSON.parse(localStorage.getItem('confissao'))}catch(e){}
+if(!d){location.replace('confissao.html')}else{
+ const [a,m,di]=d.data.split('-');
+ n.textContent=d.nome;p.textContent=d.padre;c.textContent=d.criadoPor;
+ dh.textContent=di+'/'+m+'/'+a+' às '+d.hora;
+ if(new URLSearchParams(location.search).get('imprimir'))setTimeout(()=>window.print(),400);
+}
+</script></body></html>

@@ -1,0 +1,19 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Quem é você?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><img src="brasao.png" alt="Brasão da Paróquia São Pedro"><h1>Paróquia São Pedro</h1><p>Diocese de Piracicaba</p></header>
+<main><section class="cartao">
+<h2>Quem é você?</h2><p>Escolha seu usuário para criar um comprovante de confissão.</p>
+<div class="usuarios">
+<button data-u="Marcos"><span class="inicial">M</span>Marcos</button>
+<button data-u="Mateus"><span class="inicial">M</span>Mateus</button>
+<button data-u="Tânia"><span class="inicial">T</span>Tânia</button>
+</div></section></main>
+<script>
+document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{
+ try{localStorage.setItem('usuario',b.dataset.u)}catch(e){}
+ location.href='confissao.html';
+});
+</script></body></html>

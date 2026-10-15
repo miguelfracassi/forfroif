@@ -1,0 +1,54 @@
+:root{--azul:#1c3a9e;--azul-esc:#13296f;--verm:#d2231e;--verm-esc:#9d1511;--ouro:#c9a13f;--ouro-cl:#ead58f;--papel:#fbf7ec;--tinta:#1d1b18}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0;min-height:100%;font-family:'Lora',Georgia,serif;color:var(--tinta);
+ background:linear-gradient(90deg,var(--azul) 0 50%,var(--verm) 50% 100%) fixed;
+ display:flex;flex-direction:column;align-items:center;padding:32px 16px 48px}
+body::before{content:"";position:fixed;left:calc(50% - 3px);top:0;bottom:0;width:6px;background:linear-gradient(var(--ouro-cl),var(--ouro),var(--ouro-cl));opacity:.9;z-index:0}
+main,header.topo{position:relative;z-index:1;width:100%}
+header.topo{display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff;margin-bottom:22px}
+header.topo img{width:150px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.4))}
+header.topo h1{font-family:'Cinzel',Georgia,serif;font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:.06em;margin:10px 0 0;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+header.topo p{margin:4px 0 0;font-style:italic;color:var(--ouro-cl)}
+.cartao{max-width:520px;margin:0 auto;background:var(--papel);border:3px solid var(--ouro);border-radius:6px;padding:28px 26px;box-shadow:0 0 0 6px rgba(255,255,255,.12),0 18px 40px rgba(0,0,0,.35)}
+.cartao h2{font-family:'Cinzel',Georgia,serif;margin:0 0 6px;font-size:1.4rem;color:var(--azul-esc)}
+.cartao>p{margin:0 0 20px;color:#4a463e}
+.usuarios{display:grid;gap:12px}
+.usuarios button{font:inherit;font-size:1.15rem;display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;background:#fff;border:2px solid var(--azul);border-radius:4px;cursor:pointer;color:var(--azul-esc);text-align:left}
+.usuarios button:hover,.usuarios button:focus-visible{background:var(--azul);color:#fff;outline:3px solid var(--ouro);outline-offset:2px}
+.inicial{flex:none;width:40px;height:40px;border-radius:50%;background:var(--verm);color:#fff;display:grid;place-items:center;font-family:'Cinzel',Georgia,serif;font-weight:700}
+label{display:block;font-weight:600;margin:16px 0 6px;color:var(--azul-esc)}
+input{font:inherit;width:100%;padding:11px 12px;border:2px solid #b9b19b;border-radius:4px;background:#fff}
+input:focus-visible{outline:3px solid var(--ouro);border-color:var(--azul)}
+.linha{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{font:inherit;font-weight:700;display:inline-block;margin-top:22px;padding:14px 20px;border:0;border-radius:4px;background:var(--verm);color:#fff;cursor:pointer;text-decoration:none;text-align:center;width:100%;font-size:1.05rem}
+.btn:hover{background:var(--verm-esc)}
+.btn:focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+.btn.sec{background:transparent;color:var(--azul-esc);border:2px solid var(--azul);margin-top:12px}
+.btn.sec:hover{background:var(--azul);color:#fff}
+.quem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;margin:0 auto 16px;max-width:520px;background:rgba(0,0,0,.35);color:#fff;border-radius:4px}
+.quem a{color:var(--ouro-cl)}
+.fundo{position:fixed;inset:0;background:rgba(10,15,40,.7);display:none;place-items:center;padding:16px;z-index:5}
+.fundo.aberto{display:grid}
+.fundo .cartao{text-align:center}
+@media print{@page{size:A4;margin:14mm}}
+/* comprovante */
+.barra{max-width:760px;margin:0 auto 16px;display:flex;gap:12px}
+.barra .btn{margin:0}
+.folha{max-width:760px;width:100%;margin:0 auto;background:#fff;color:#000;border:2px solid #000;padding:34px 40px;min-height:900px;display:flex;flex-direction:column;position:relative;z-index:1}
+.folha img{width:130px;filter:grayscale(1) contrast(1.15)}
+.cab{text-align:center;border-bottom:3px double #000;padding-bottom:16px}
+.cab h1{font-family:'Cinzel',Georgia,serif;margin:8px 0 0;font-size:1.8rem;letter-spacing:.08em}
+.cab p{margin:2px 0 0;font-style:italic;font-size:1.1rem}
+.folha h2{text-align:center;font-family:'Cinzel',Georgia,serif;font-size:1.25rem;margin:34px 0 26px;letter-spacing:.04em}
+.dados p{margin:0 0 18px;font-size:1.15rem;border-bottom:1px dotted #000;padding-bottom:6px}
+.dados b{display:inline-block;min-width:130px}
+.criado{margin-top:6px;font-size:.95rem}
+.fim{margin-top:auto;display:grid;grid-template-columns:1fr 200px;gap:30px;align-items:end;padding-top:50px}
+.assin{border-top:1.5px solid #000;text-align:center;padding-top:6px}
+.carimbo{border:2px dashed #000;height:130px;display:grid;place-items:end center;padding-bottom:6px;font-size:.9rem;text-align:center}
+@media print{
+ body{background:#fff;padding:0;display:block}
+ body::before,.barra,header.topo{display:none}
+ .folha{border:2px solid #000;max-width:none;min-height:265mm;padding:10mm 14mm}
+}

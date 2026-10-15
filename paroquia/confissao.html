@@ -1,0 +1,37 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Nova confissão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><img src="brasao.png" alt="Brasão da Paróquia São Pedro"><h1>Paróquia São Pedro</h1><p>Diocese de Piracicaba</p></header>
+<main>
+<div class="quem"><span>Usuário: <b id="usr"></b></span><a href="index.html">Trocar usuário</a></div>
+<form class="cartao" id="f">
+<h2>Nova confissão</h2><p>Preencha as informações abaixo.</p>
+<label for="nome">Nome da pessoa que irá se confessar</label>
+<input id="nome" required autocomplete="off">
+<div class="linha">
+<div><label for="data">Data</label><input id="data" type="date" required></div>
+<div><label for="hora">Horário</label><input id="hora" type="time" required></div>
+</div>
+<label for="padre">Padre</label>
+<input id="padre" required autocomplete="off">
+<button class="btn" type="submit">Criar confissão e imprimir</button>
+</form></main>
+<div class="fundo" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="cartao">
+<h2 id="mt">Confissão criada!</h2>
+<p>Imprima o comprovante de confissão para entregar à pessoa.</p>
+<a class="btn" href="comprovante.html?imprimir=1">Imprimir comprovante</a>
+<a class="btn sec" href="comprovante.html">Só visualizar</a>
+</div></div>
+<script>
+const u=localStorage.getItem('usuario');
+if(!u){location.replace('index.html')}
+document.getElementById('usr').textContent=u||'';
+document.getElementById('f').onsubmit=e=>{
+ e.preventDefault();
+ const d={nome:nome.value.trim(),data:data.value,hora:hora.value,padre:padre.value.trim(),criadoPor:u};
+ try{localStorage.setItem('confissao',JSON.stringify(d))}catch(err){}
+ document.getElementById('modal').classList.add('aberto');
+};
+</script></body></html>
