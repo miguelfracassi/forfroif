@@ -1,0 +1,40 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Detalhes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><h1>Paróquia São Pedro</h1><span class="orn" aria-hidden="true"></span><p>Diocese de Piracicaba</p></header>
+<main>
+<div class="quem"><span>Usuário: <b id="usr"></b></span><a href="index.html">Trocar usuário</a></div>
+<ol class="passos"><li class="ok">Usuário</li><li class="ok">Informações</li><li class="ok">Tipo</li><li class="atual">Detalhes</li></ol>
+<form class="cartao" id="f">
+<h2 id="tit">Detalhes</h2><p>Conte o que você precisa.</p>
+<label for="motivo">Motivo</label><textarea id="motivo" rows="3" required></textarea>
+<label for="assunto">Assunto</label><input id="assunto" required autocomplete="off">
+<div class="linha">
+<div><label for="setor">Setor</label><select id="setor" required><option value="">Escolha</option><option>Secretaria paroquial</option><option>Pastoral da Família</option><option>Catequese</option><option>Liturgia</option><option>Pastoral da Juventude</option><option>Pastoral Social</option><option>Outro</option></select></div>
+<div><label for="local">Onde quer ser atendido</label><select id="local" required><option value="">Escolha</option><option>Igreja Matriz</option><option>Secretaria paroquial</option><option>Capela da comunidade</option><option>Online (videochamada)</option><option>Visita em casa</option></select></div>
+</div>
+<label for="padre">Padre</label><input id="padre" required autocomplete="off">
+<div class="linha">
+<div><label for="data">Data</label><input id="data" type="date" required></div>
+<div><label for="hora">Horário</label><input id="hora" type="time" required></div>
+</div>
+<button class="btn" type="submit">Criar agendamento e imprimir</button>
+<a class="btn sec" href="tipo.html">Voltar</a>
+</form></main>
+<div class="fundo" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="cartao">
+<h2 id="mt">Agendamento criado!</h2>
+<p>Imprima o comprovante para entregar à pessoa.</p>
+<a class="btn" href="comprovante.html?imprimir=1">Imprimir comprovante</a>
+<a class="btn sec" href="comprovante.html">Só visualizar</a>
+</div></div>
+<script src="app.js"></script>
+<script>
+const d=exigir('tipo','tipo.html');quem();
+document.getElementById('tit').textContent='Detalhes: '+d.tipo;
+['motivo','assunto','setor','local','padre','data','hora'].forEach(k=>{if(d[k])document.getElementById(k).value=d[k]});
+document.getElementById('f').onsubmit=e=>{e.preventDefault();
+ salvar({motivo:motivo.value.trim(),assunto:assunto.value.trim(),setor:setor.value,local:local.value,padre:padre.value.trim(),data:data.value,hora:hora.value});
+ document.getElementById('modal').classList.add('aberto')};
+</script></body></html>

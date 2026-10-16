@@ -1,0 +1,31 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Suas informações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><h1>Paróquia São Pedro</h1><span class="orn" aria-hidden="true"></span><p>Diocese de Piracicaba</p></header>
+<main>
+<div class="quem"><span>Usuário: <b id="usr"></b></span><a href="index.html">Trocar usuário</a></div>
+<ol class="passos"><li class="ok">Usuário</li><li class="atual">Informações</li><li>Tipo</li><li>Detalhes</li></ol>
+<form class="cartao" id="f">
+<h2>Suas informações</h2><p>Dados de quem está pedindo o agendamento.</p>
+<label for="nome">Nome completo</label><input id="nome" required autocomplete="off">
+<div class="linha">
+<div><label for="tel">Telefone</label><input id="tel" type="tel" required placeholder="(19) 90000-0000"></div>
+<div><label for="email">E-mail</label><input id="email" type="email" required placeholder="nome@email.com"></div>
+</div>
+<div class="linha">
+<div><label for="nasc">Data de nascimento</label><input id="nasc" type="date"></div>
+<div><label for="comun">Bairro ou comunidade</label><input id="comun" autocomplete="off"></div>
+</div>
+<button class="btn" type="submit">Continuar</button>
+<a class="btn sec" href="index.html">Voltar</a>
+</form></main>
+<script src="app.js"></script>
+<script>
+const d=exigir('usuario','index.html');quem();
+['nome','tel','email','nasc','comun'].forEach(k=>{if(d[k])document.getElementById(k).value=d[k]});
+document.getElementById('f').onsubmit=e=>{e.preventDefault();
+ salvar({nome:nome.value.trim(),tel:tel.value.trim(),email:email.value.trim(),nasc:nasc.value,comun:comun.value.trim()});
+ location.href='tipo.html'};
+</script></body></html>

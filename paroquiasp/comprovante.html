@@ -1,0 +1,27 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comprovante de Agendamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<main>
+<div class="barra"><button class="btn" onclick="window.print()">Imprimir comprovante</button><a class="btn sec" href="index.html">Novo agendamento</a></div>
+<article class="folha">
+<div class="cab"><h1>PARÓQUIA SÃO PEDRO</h1><span class="orn" aria-hidden="true"></span><p>Diocese de Piracicaba</p></div>
+<h2 id="tit"></h2>
+<div class="dados" id="dados"></div>
+<div class="fim">
+<div class="assin">Assinatura do secretário</div>
+<div class="carimbo">Carimbo de comparecimento</div>
+</div>
+</article></main>
+<script src="app.js"></script>
+<script>
+const d=exigir('padre','index.html');
+const [a,m,di]=(d.data||'--').split('-');
+document.getElementById('tit').textContent='COMPROVANTE DE '+(d.tipo||'').toUpperCase()+' E INFORMAÇÕES';
+const linhas=[['Nome',d.nome],['Telefone',d.tel],['E-mail',d.email],['Tipo',d.tipo],['Data e Hora',di+'/'+m+'/'+a+' às '+d.hora],['Padre',d.padre],['Setor',d.setor],['Local',d.local],['Assunto',d.assunto],['Motivo',d.motivo]];
+const box=document.getElementById('dados');
+linhas.forEach(([k,v])=>{const p=document.createElement('p');const b=document.createElement('b');b.textContent=k+':';p.append(b,' ',document.createTextNode(v||''));box.appendChild(p)});
+const c=document.createElement('p');c.className='criado';const cb=document.createElement('b');cb.textContent='Criado por:';c.append(cb,' ',document.createTextNode(d.usuario));box.appendChild(c);
+if(new URLSearchParams(location.search).get('imprimir'))setTimeout(()=>window.print(),400);
+</script></body></html>

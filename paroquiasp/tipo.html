@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Tipo de agendamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><h1>Paróquia São Pedro</h1><span class="orn" aria-hidden="true"></span><p>Diocese de Piracicaba</p></header>
+<main>
+<div class="quem"><span>Usuário: <b id="usr"></b></span><a href="index.html">Trocar usuário</a></div>
+<ol class="passos"><li class="ok">Usuário</li><li class="ok">Informações</li><li class="atual">Tipo</li><li>Detalhes</li></ol>
+<section class="cartao">
+<h2>Qual é o tipo de agendamento?</h2><p>Escolha uma opção para continuar.</p>
+<div class="usuarios" id="tipos"></div>
+<a class="btn sec" href="dados.html">Voltar</a>
+</section></main>
+<script src="app.js"></script>
+<script>
+exigir('nome','dados.html');quem();
+const tipos=[['Confissão','C'],['Aconselhamento','A'],['Batizado','B'],['Casamento','M'],['Intenção de missa','I'],['Bênção','N'],['Outro','O']];
+const box=document.getElementById('tipos');
+tipos.forEach(([t,i])=>{const b=document.createElement('button');b.type='button';
+ b.innerHTML='<span class="inicial">'+i+'</span>'+t;
+ b.onclick=()=>{salvar({tipo:t});location.href='detalhes.html'};box.appendChild(b)});
+</script></body></html>

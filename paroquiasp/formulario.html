@@ -1,0 +1,48 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paróquia São Pedro · Formulário em branco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="topo"><h1>Paróquia São Pedro</h1><span class="orn" aria-hidden="true"></span><p>Diocese de Piracicaba</p></header>
+<main>
+<section class="cartao controle nao-imprimir">
+<h2>Formulário em branco</h2>
+<p>Folha de contato e agendamento para as pessoas preencherem à mão.</p>
+<label for="qtd" class="centro">Quantos você quer imprimir?</label>
+<div class="qtd">
+<button type="button" id="menos" aria-label="Diminuir quantidade">−</button>
+<input id="qtd" type="number" min="1" max="200" value="1" inputmode="numeric">
+<button type="button" id="mais" aria-label="Aumentar quantidade">+</button>
+</div>
+<div class="chips" id="chips"></div>
+<button class="btn" type="button" id="imp">Imprimir 1 formulário</button>
+<a class="btn sec" href="index.html">Voltar</a>
+</section>
+<div id="folhas" class="previa"></div>
+</main>
+<script>
+const MAXQ=200;
+const L=t=>'<div class="campo"><span>'+t+'</span><i></i></div>';
+const V=()=>'<div class="campo"><i></i></div>';
+const D=(a,b)=>'<div class="dupla">'+L(a)+L(b)+'</div>';
+const C=arr=>'<div class="caixas">'+arr.map(x=>'<span class="cx"><em class="box"></em>'+x+'</span>').join('')+'</div>';
+function folha(){return '<article class="folha form">'+
+'<div class="cab"><h1>PARÓQUIA SÃO PEDRO</h1><span class="orn"></span><p>Diocese de Piracicaba</p></div>'+
+'<h2>FORMULÁRIO DE CONTATO E AGENDAMENTO</h2>'+
+'<h3>Suas informações</h3>'+L('Nome completo')+D('Telefone','E-mail')+D('Data de nascimento','Bairro ou comunidade')+
+'<h3>Tipo de agendamento</h3>'+C(['Confissão','Aconselhamento','Batizado','Casamento','Intenção de missa','Bênção','Outro'])+
+'<h3>Detalhes</h3>'+L('Motivo')+V()+V()+L('Assunto')+D('Setor','Padre')+
+'<p class="rot">Onde quer ser atendido:</p>'+C(['Igreja Matriz','Secretaria paroquial','Capela da comunidade','Online','Visita em casa'])+
+D('Data desejada','Horário')+
+'<div class="fim"><div class="assin">Assinatura do solicitante</div><div class="assin">Assinatura do secretário</div></div>'+
+'</article>'}
+const qtd=document.getElementById('qtd'),imp=document.getElementById('imp'),box=document.getElementById('folhas');
+function q(){let n=parseInt(qtd.value,10);if(!n||n<1)n=1;if(n>MAXQ)n=MAXQ;return n}
+function rot(){const n=q();imp.textContent='Imprimir '+n+(n===1?' formulário':' formulários')}
+qtd.addEventListener('input',rot);
+document.getElementById('menos').onclick=()=>{qtd.value=Math.max(1,q()-1);rot()};
+document.getElementById('mais').onclick=()=>{qtd.value=Math.min(MAXQ,q()+1);rot()};
+[1,5,10,20,50].forEach(n=>{const b=document.createElement('button');b.type='button';b.textContent=n;b.onclick=()=>{qtd.value=n;rot()};document.getElementById('chips').appendChild(b)});
+imp.onclick=()=>{const n=q();qtd.value=n;rot();box.innerHTML=new Array(n).fill(folha()).join('');window.print()};
+box.innerHTML=folha();
+</script></body></html>
